@@ -5,318 +5,447 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SehatGlow • Premium Wellness & Beauty</title>
-
-    <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
-
-    <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600&display=swap" rel="stylesheet">
-
-    <!-- Font Awesome -->
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:wght@400;500&display=swap"
+        rel="stylesheet">
     <script src="https://kit.fontawesome.com/a81368914c.js" crossorigin="anonymous"></script>
+    <script src="shared-data.js"></script>
 
-    <!-- Custom Styles for Background and Fonts -->
     <style>
-        /* Applying custom fonts to Tailwind's utility classes */
         body {
             font-family: 'Inter', sans-serif;
-            background-color: #fdfcff; /* A very light lavender fallback */
         }
 
         .font-playfair {
             font-family: 'Playfair Display', serif;
         }
 
-        /* --- ASMR Inspired Animated Background --- */
+        /* ASMR Comfort-Driven Background */
         .asmr-bg {
-            background: linear-gradient(45deg, #fce7f3, #e9d5ff, #e0f2fe, #d1fae5);
+            background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 25%, #e2e8f0 50%, #f8fafc 75%, #f1f5f9 100%);
             background-size: 400% 400%;
-            animation: asmrFlow 25s ease infinite;
-            position: relative;
-            overflow-x: hidden;
+            animation: gentleFlow 25s ease infinite;
+            min-height: 100vh;
         }
 
-        @keyframes asmrFlow {
-            0% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-            100% { background-position: 0% 50%; }
+        @keyframes gentleFlow {
+
+            0%,
+            100% {
+                background-position: 0% 50%;
+            }
+
+            33% {
+                background-position: 100% 50%;
+            }
+
+            66% {
+                background-position: 50% 100%;
+            }
         }
 
-        /* Soft aurora overlay effect */
         .asmr-bg::before {
             content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
+            position: fixed;
+            inset: 0;
             background:
-                radial-gradient(circle at 15% 85%, rgba(233, 213, 255, 0.4) 0%, transparent 70%),
-                radial-gradient(circle at 85% 15%, rgba(224, 242, 254, 0.4) 0%, transparent 70%),
-                radial-gradient(circle at 50% 50%, rgba(252, 231, 243, 0.3) 0%, transparent 70%);
-            animation: auroraShift 30s ease-in-out infinite;
+                radial-gradient(circle at 20% 80%, rgba(219, 234, 254, 0.4) 0%, transparent 60%),
+                radial-gradient(circle at 80% 20%, rgba(243, 232, 255, 0.4) 0%, transparent 60%),
+                radial-gradient(circle at 40% 40%, rgba(254, 242, 242, 0.3) 0%, transparent 50%);
+            animation: softAura 30s ease infinite;
             pointer-events: none;
             z-index: 1;
         }
 
-        @keyframes auroraShift {
-            0%, 100% { opacity: 0.7; transform: scale(1) rotate(0deg); }
-            25% { opacity: 0.5; transform: scale(1.1) rotate(-30deg); }
-            50% { opacity: 0.8; transform: scale(0.9) rotate(30deg); }
-            75% { opacity: 0.6; transform: scale(1.2) rotate(10deg); }
+        @keyframes softAura {
+
+            0%,
+            100% {
+                opacity: 0.7;
+                transform: scale(1) rotate(0deg);
+            }
+
+            50% {
+                opacity: 0.9;
+                transform: scale(1.05) rotate(1deg);
+            }
         }
 
-        /* Custom transition for hero slider */
         .slide-transition {
-            transition: opacity 1.5s cubic-bezier(0.4, 0, 0.2, 1);
+            transition: opacity 1s ease;
+        }
+
+        .product-card {
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .product-card:hover {
+            transform: translateY(-8px) scale(1.02);
+        }
+
+        /* Mobile-friendly hover effects */
+        @media (max-width: 768px) {
+            .product-card:hover {
+                transform: translateY(-4px) scale(1.01);
+            }
+        }
+
+        .btn-hover-effect {
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .btn-hover-effect:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .fade-in {
+            animation: fadeIn 0.6s ease;
+        }
+
+        .cart-count {
+            display: none;
+        }
+
+        /* Mobile menu improvements */
+        #mobile-menu {
+            transition: all 0.3s ease-in-out;
+        }
+
+        #mobile-menu.show {
+            display: block !important;
+        }
+
+        /* Hero section mobile optimization */
+        @media (max-width: 768px) {
+            .hero-content {
+                padding: 1rem;
+                text-align: center;
+            }
+
+            .hero-image {
+                height: 250px !important;
+                margin-bottom: 2rem;
+            }
+
+            .hero-title {
+                font-size: 2rem !important;
+                line-height: 1.2;
+            }
+
+            .hero-description {
+                font-size: 1rem;
+                margin-bottom: 1.5rem;
+            }
         }
     </style>
 </head>
 
 <body class="asmr-bg">
-
-    <!-- All content wrapper to be above the background animations -->
     <div class="relative z-10">
-
-        <!-- Navigation Bar -->
+        <!-- Navigation -->
         <nav id="navbar" class="fixed top-0 left-0 right-0 z-50 transition-all duration-300">
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                <div class="flex items-center justify-between h-20">
-                    <!-- Logo -->
-                    <a href="#" class="flex-shrink-0 flex items-center gap-3 text-gray-700 hover:text-purple-500 transition-colors duration-300">
-                         <div class="w-12 h-12 flex items-center justify-center rounded-xl bg-gradient-to-br from-purple-300 to-fuchsia-300 shadow-lg">
-                            <svg width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <path d="M14 3C18.5 3 22 6.5 22 11C22 13.2 21 15.2 19.5 16.5C21 17.8 22 19.8 22 22C22 24.2 20.2 26 18 26H10C7.8 26 6 24.2 6 22C6 19.8 7 17.8 8.5 16.5C7 15.2 6 13.2 6 11C6 6.5 9.5 3 14 3Z" fill="white" fill-opacity="0.9"/>
-                                <circle cx="11.5" cy="9" r="1.2" fill="white" opacity="0.9">
-                                    <animate attributeName="opacity" values="0.9;0.4;0.9" dur="2s" repeatCount="indefinite"/>
-                                </circle>
-                                <circle cx="17.5" cy="18.5" r="0.7" fill="white" opacity="0.6">
-                                    <animate attributeName="opacity" values="0.6;0.2;0.6" dur="2.2s" repeatCount="indefinite"/>
-                                </circle>
+                <div class="flex items-center justify-between h-16">
+                    <a href="index.html"
+                        class="flex items-center gap-3 text-gray-700 hover:text-purple-500 transition-colors">
+                        <div
+                            class="w-10 h-10 flex items-center justify-center rounded-xl bg-gradient-to-br from-purple-300 to-fuchsia-300 shadow-lg">
+                            <svg width="24" height="24" viewBox="0 0 28 28" fill="none">
+                                <path
+                                    d="M14 3C18.5 3 22 6.5 22 11C22 13.2 21 15.2 19.5 16.5C21 17.8 22 19.8 22 22C22 24.2 20.2 26 18 26H10C7.8 26 6 24.2 6 22C6 19.8 7 17.8 8.5 16.5C7 15.2 6 13.2 6 11C6 6.5 9.5 3 14 3Z"
+                                    fill="white" fill-opacity="0.9" />
                             </svg>
-                         </div>
-                        <span class="font-playfair text-2xl font-semibold text-gray-600">SehatGlow</span>
+                        </div>
+                        <span class="font-playfair text-xl font-semibold">SehatGlow</span>
                     </a>
 
-                    <!-- Desktop Menu -->
                     <div class="hidden md:flex items-center space-x-2">
-                        <a href="#" class="text-gray-500 hover:bg-white/60 hover:text-purple-500 px-4 py-2 rounded-full text-sm font-medium transition-all duration-300">Home</a>
-                        <a href="#products" class="text-gray-500 hover:bg-white/60 hover:text-purple-500 px-4 py-2 rounded-full text-sm font-medium transition-all duration-300">Shop</a>
-                        <a href="#about" class="text-gray-500 hover:bg-white/60 hover:text-purple-500 px-4 py-2 rounded-full text-sm font-medium transition-all duration-300">About</a>
-                        <a href="#contact" class="text-gray-500 hover:bg-white/60 hover:text-purple-500 px-4 py-2 rounded-full text-sm font-medium transition-all duration-300">Contact</a>
-                        <a href="#" class="bg-white/60 text-purple-600 shadow-sm hover:bg-white hover:shadow-md px-5 py-2 rounded-full text-sm font-semibold transition-all duration-300">Login</a>
+                        <a href="index.html"
+                            class="text-gray-500 hover:bg-white/60 hover:text-purple-500 px-4 py-2 rounded-full text-sm font-medium transition-all">Home</a>
+                        <a href="#products"
+                            class="text-gray-500 hover:bg-white/60 hover:text-purple-500 px-4 py-2 rounded-full text-sm font-medium transition-all">Products</a>
+                        <a href="cart.html"
+                            class="text-gray-500 hover:bg-white/60 hover:text-purple-500 px-4 py-2 rounded-full text-sm font-medium transition-all relative">
+                            <i class="fas fa-shopping-cart mr-1"></i>Cart
+                            <span
+                                class="cart-count absolute -top-1 -right-1 bg-purple-600 text-white text-xs font-bold px-2 py-1 rounded-full">0</span>
+                        </a>
+                        <div id="user-menu" class="hidden">
+                            <span id="user-name" class="text-gray-600 px-4 py-2"></span>
+                            <button id="logout-btn"
+                                class="bg-red-500/80 text-white shadow-sm hover:bg-red-600 px-5 py-2 rounded-full text-sm font-semibold transition-all">Logout</button>
+                        </div>
+                        <a href="login.html" id="login-link"
+                            class="bg-white/60 text-purple-600 shadow-sm hover:bg-white hover:shadow-md px-5 py-2 rounded-full text-sm font-semibold transition-all">Login</a>
                     </div>
-                    
-                    <!-- Mobile Menu Button -->
-                    <div class="md:hidden">
-                        <button id="mobile-menu-button" class="inline-flex items-center justify-center p-2 rounded-md text-gray-500 hover:text-purple-500 hover:bg-white/50 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white">
-                            <span class="sr-only">Open main menu</span>
-                            <i class="fas fa-bars fa-lg block"></i>
-                            <i class="fas fa-times fa-lg hidden"></i>
-                        </button>
-                    </div>
+
+                    <button id="mobile-menu-button"
+                        class="md:hidden p-2 rounded-md text-gray-500 hover:text-purple-500">
+                        <i class="fas fa-bars fa-lg"></i>
+                    </button>
                 </div>
             </div>
 
-            <!-- Mobile Menu, show/hide based on menu state. -->
-            <div id="mobile-menu" class="md:hidden hidden">
-                <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
-                    <a href="#" class="text-gray-500 hover:bg-white/50 block px-3 py-2 rounded-md text-base font-medium">Home</a>
-                    <a href="#products" class="text-gray-500 hover:bg-white/50 block px-3 py-2 rounded-md text-base font-medium">Shop</a>
-                    <a href="#about" class="text-gray-500 hover:bg-white/50 block px-3 py-2 rounded-md text-base font-medium">About</a>
-                    <a href="#contact" class="text-gray-500 hover:bg-white/50 block px-3 py-2 rounded-md text-base font-medium">Contact</a>
-                    <a href="#" class="bg-white/50 text-purple-600 block px-3 py-3 mt-2 rounded-md text-base font-semibold text-center">Login</a>
+            <div id="mobile-menu" class="md:hidden hidden bg-white/90 backdrop-blur-lg">
+                <div class="px-2 pt-2 pb-3 space-y-1">
+                    <a href="index.html" class="text-gray-500 hover:bg-white/50 block px-3 py-2 rounded-md">Home</a>
+                    <a href="#products" class="text-gray-500 hover:bg-white/50 block px-3 py-2 rounded-md">Products</a>
+                    <a href="cart.html" class="text-gray-500 hover:bg-white/50 block px-3 py-2 rounded-md relative">
+                        <i class="fas fa-shopping-cart mr-1"></i>Cart
+                        <span
+                            class="cart-count absolute top-1 right-3 bg-purple-600 text-white text-xs font-bold px-2 py-1 rounded-full">0</span>
+                    </a>
+                    <a href="login.html" id="mobile-login-link"
+                        class="bg-white/50 text-purple-600 block px-3 py-3 mt-2 rounded-md text-center font-semibold">Login</a>
                 </div>
             </div>
         </nav>
 
-        <!-- Hero Product Slider -->
-        <section class="relative h-screen min-h-[700px] w-full flex items-center justify-center overflow-hidden">
-            <div class="slider-container relative w-full h-full">
-                <!-- Slides will be injected here by JS -->
-            </div>
+        <!-- Hero Slider -->
+        <section
+            class="relative h-screen sm:h-screen md:h-screen w-full flex items-center justify-center overflow-hidden"
+            style="min-height: 100vh; max-height: 100vh;">
+            <div class="slider-container relative w-full h-full"></div>
 
-            <!-- Slider Navigation -->
-            <div class="absolute bottom-8 left-1/2 -translate-x-1/2 z-20 flex space-x-4 slider-dots">
-                <!-- Dots will be injected here by JS -->
-            </div>
-
-            <!-- Slider Arrows -->
-            <button id="prevSlide" class="absolute left-4 md:left-8 top-1/2 -translate-y-1/2 z-20 w-12 h-12 rounded-full bg-white/40 backdrop-blur-sm text-gray-600 hover:bg-white/60 transition-all duration-300 flex items-center justify-center">
-                <i class="fas fa-chevron-left"></i>
-            </button>
-            <button id="nextSlide" class="absolute right-4 md:right-8 top-1/2 -translate-y-1/2 z-20 w-12 h-12 rounded-full bg-white/40 backdrop-blur-sm text-gray-600 hover:bg-white/60 transition-all duration-300 flex items-center justify-center">
-                <i class="fas fa-chevron-right"></i>
-            </button>
+            <div class="absolute bottom-8 left-1/2 -translate-x-1/2 z-20 flex space-x-3 slider-dots"></div>
         </section>
 
         <!-- Products Section -->
-        <section id="products" class="py-24 bg-white/20 backdrop-blur-2xl">
-            <div class="container max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                <div class="text-center mb-16">
+        <section id="products" class="py-20 bg-white/20 backdrop-blur-xl">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center mb-12">
                     <h2 class="text-4xl md:text-5xl font-playfair font-semibold text-gray-700">Featured Products</h2>
-                    <p class="mt-4 text-lg text-gray-500 max-w-2xl mx-auto">Discover our carefully curated wellness and beauty essentials, crafted with the finest ingredients.</p>
+                    <p class="mt-4 text-lg text-gray-500 max-w-2xl mx-auto">Discover our carefully curated wellness and
+                        beauty essentials.</p>
+
                 </div>
-                
-                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
-                    <!-- Product Cards will be injected here by JS -->
-                </div>
+                <div id="products-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8"></div>
             </div>
         </section>
 
+        <!-- Footer -->
+        <footer class="bg-gray-800/90 backdrop-blur-lg text-white py-12">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                    <div>
+                        <div class="flex items-center gap-3 mb-4">
+                            <div
+                                class="w-10 h-10 flex items-center justify-center rounded-xl bg-gradient-to-br from-purple-400 to-fuchsia-400">
+                                <svg width="24" height="24" viewBox="0 0 28 28" fill="none">
+                                    <path
+                                        d="M14 3C18.5 3 22 6.5 22 11C22 13.2 21 15.2 19.5 16.5C21 17.8 22 19.8 22 22C22 24.2 20.2 26 18 26H10C7.8 26 6 24.2 6 22C6 19.8 7 17.8 8.5 16.5C7 15.2 6 13.2 6 11C6 6.5 9.5 3 14 3Z"
+                                        fill="white" fill-opacity="0.9" />
+                                </svg>
+                            </div>
+                            <span class="font-playfair text-xl font-semibold">SehatGlow</span>
+                        </div>
+                        <p class="text-gray-300 mb-6">Premium wellness and beauty products crafted with natural
+                            ingredients.</p>
+                    </div>
+
+                    <div>
+                        <h3 class="text-lg font-semibold mb-4">Quick Links</h3>
+                        <ul class="space-y-2">
+                            <li><a href="index.html" class="text-gray-300 hover:text-white transition-colors">Home</a>
+                            </li>
+                            <li><a href="#products"
+                                    class="text-gray-300 hover:text-white transition-colors">Products</a></li>
+                            <li><a href="cart.html" class="text-gray-300 hover:text-white transition-colors">Cart</a>
+                            </li>
+                            <li><a href="login.html" class="text-gray-300 hover:text-white transition-colors">Login</a>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div>
+                        <h3 class="text-lg font-semibold mb-4">Stay Updated</h3>
+                        <div class="flex">
+                            <input type="email" placeholder="Enter email"
+                                class="flex-1 px-4 py-2 rounded-l-lg bg-white/10 border border-white/20 focus:outline-none focus:ring-2 focus:ring-purple-400 text-white placeholder-gray-400">
+                            <button
+                                class="px-6 py-2 bg-purple-500 hover:bg-purple-600 rounded-r-lg font-semibold transition-colors">Subscribe</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="border-t border-gray-700 mt-8 pt-8 text-center">
+                    <p class="text-gray-400">&copy; 2025 SehatGlow. All rights reserved.</p>
+                </div>
+            </div>
+        </footer>
     </div>
+
+
 
     <script>
         document.addEventListener('DOMContentLoaded', function () {
-            
-            // --- DATA ---
+            // Initialize user interface
+            updateUserInterface();
+
+            // Hero slider data
             const slidesData = [
                 {
                     badge: 'Premium Collection',
                     title: 'Radiance Beauty Cream',
-                    description: 'Luxurious anti-aging cream with natural botanicals and peptides. Deeply nourishes and restores your skin\'s natural glow.',
-                    image: 'https://placehold.co/800x600/fde6f0/4a5568?text=Cream',
+                    description: 'Luxurious anti-aging cream with natural botanicals and peptides for youthful, glowing skin.',
+                    image: 'assets/beautycream16by8.jpg',
                 },
                 {
                     badge: 'Bestseller',
-                    title: 'Vitamin C Glow Serum',
-                    description: 'Powerful vitamin C serum with hyaluronic acid for brightening and hydration. Clinically proven to reduce dark spots.',
-                    image: 'https://placehold.co/800x600/f3e8ff/4a5568?text=Serum',
+                    title: 'Hydrating Face Serum',
+                    description: 'Powerful hydrating serum with hyaluronic acid for deep moisture and radiant skin.',
+                    image: 'assets/faceSerum16by8.jpg',
                 },
                 {
                     badge: 'New Arrival',
-                    title: 'SunStone Collection',
-                    description: 'Exclusive wellness collection featuring natural minerals and healing crystals. Enhance your daily routine with nature\'s energy.',
-                    image: 'https://placehold.co/800x600/e0f2fe/4a5568?text=SunStone',
+                    title: 'SunStone Wellness Collection',
+                    description: 'Exclusive wellness collection featuring natural minerals and healing crystals.',
+                    image: 'assets/SunStone16by9.png',
                 }
             ];
 
-            const productsData = [
-                { title: 'Hydrating Face Mask', description: 'Deep hydration with natural botanicals.', price: '$34.99', rating: 5, reviews: 127, icon: 'fa-spa', color: 'from-pink-100 to-pink-200', iconColor: 'text-pink-400' },
-                { title: 'Wellness Tea Blend', description: 'Organic herbal tea for daily detox.', price: '$24.99', rating: 4.5, reviews: 89, icon: 'fa-seedling', color: 'from-green-100 to-green-200', iconColor: 'text-green-400' },
-                { title: 'Collagen Supplement', description: 'For skin elasticity and joint health.', price: '$49.99', rating: 5, reviews: 203, icon: 'fa-heart', color: 'from-red-100 to-red-200', iconColor: 'text-red-400' },
-                { title: 'Natural Body Oil', description: 'Nourishing oil for smooth, soft skin.', price: '$39.99', rating: 4, reviews: 156, icon: 'fa-leaf', color: 'from-lime-100 to-lime-200', iconColor: 'text-lime-400' },
-                { title: 'Crystal Therapy Set', description: 'Healing crystals for meditation.', price: '$89.99', rating: 4.5, reviews: 94, icon: 'fa-gem', color: 'from-violet-100 to-violet-200', iconColor: 'text-violet-400' },
-                { title: 'Vitamin D Complex', description: 'High-potency for immune support.', price: '$29.99', rating: 5, reviews: 178, icon: 'fa-sun', color: 'from-amber-100 to-amber-200', iconColor: 'text-amber-400' },
-            ];
+            // Initialize slider
+            initializeSlider(slidesData);
 
+            // Initialize products
+            loadProducts();
 
-            // --- UI RENDERING ---
+            // Navigation functionality
+            setupNavigation();
 
+            // User authentication handlers
+            setupAuthHandlers();
+        });
+
+        // Enhanced Authentication System with Local Storage (moved to top)
+
+        // Check authentication status from local storage
+        function checkAuthStatus() {
+            const userData = localStorage.getItem('sehatglow_user');
+            return userData ? JSON.parse(userData) : null;
+        }
+
+        // Enhanced authentication check
+        function isUserAuthenticated() {
+            const userData = checkAuthStatus();
+            return userData !== null && userData.email && userData.name;
+        }
+
+        // Store user data in local storage
+        function storeUserData(userData) {
+            localStorage.setItem('sehatglow_user', JSON.stringify(userData));
+        }
+
+        // Clear user data from local storage
+        function clearUserData() {
+            localStorage.removeItem('sehatglow_user');
+            localStorage.removeItem('sehatglow_cart');
+        }
+
+        function updateUserInterface() {
+            // Use our local storage authentication system
+            const isLoggedIn = isUserAuthenticated();
+            const user = checkAuthStatus();
+
+            const userMenu = document.getElementById('user-menu');
+            const loginLink = document.getElementById('login-link');
+            const mobileLoginLink = document.getElementById('mobile-login-link');
+            const userName = document.getElementById('user-name');
+
+            if (isLoggedIn && user) {
+                userMenu.classList.remove('hidden');
+                loginLink.classList.add('hidden');
+                mobileLoginLink.textContent = 'Logout';
+                mobileLoginLink.href = '#';
+                mobileLoginLink.onclick = () => {
+                    clearUserData(); // Use our local storage clear function
+                    location.reload();
+                };
+                userName.textContent = `Hello, ${user.name}`;
+            } else {
+                userMenu.classList.add('hidden');
+                loginLink.classList.remove('hidden');
+            }
+        }
+
+        function setupAuthHandlers() {
+            const logoutBtn = document.getElementById('logout-btn');
+            if (logoutBtn) {
+                logoutBtn.addEventListener('click', () => {
+                    SehatGlowData.logoutUser();
+                    SehatGlowData.showNotification('Logged out successfully');
+                    setTimeout(() => location.reload(), 1000);
+                });
+            }
+        }
+
+        function initializeSlider(slidesData) {
             const sliderContainer = document.querySelector('.slider-container');
             const sliderDotsContainer = document.querySelector('.slider-dots');
-            
+
             slidesData.forEach((slide, index) => {
-                // Create Slide
                 const slideEl = document.createElement('div');
-                slideEl.className = 'slide absolute top-0 left-0 w-full h-full slide-transition flex items-center justify-center p-4';
+                slideEl.className = 'slide absolute inset-0 slide-transition flex items-center justify-center p-4';
                 slideEl.style.opacity = index === 0 ? '1' : '0';
                 slideEl.innerHTML = `
-                    <div class="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 items-center gap-8 md:gap-16 text-center md:text-left">
-                        <div class="product-showcase order-1 md:order-2">
-                            <img src="${slide.image}" alt="${slide.title}" class="rounded-3xl shadow-2xl w-full max-w-md mx-auto aspect-video md:aspect-square object-cover">
+                    <div class="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 items-center gap-6 lg:gap-12 text-center lg:text-left hero-content">
+                        <div class="order-1 lg:order-2 w-full">
+                            <img src="${slide.image}" alt="${slide.title}"
+                                class="hero-image rounded-3xl shadow-2xl w-full h-64 sm:h-80 lg:h-[500px] object-cover transform hover:scale-105 transition-transform duration-700"
+                                loading="eager">
                         </div>
-                        <div class="product-details order-2 md:order-1 text-gray-800 animate-fade-in">
-                            <span class="inline-block bg-white/50 backdrop-blur-sm py-1 px-4 rounded-full text-sm font-semibold text-purple-600 mb-4">${slide.badge}</span>
-                            <h1 class="hero-product-title font-playfair text-4xl lg:text-6xl font-semibold text-gray-700 mb-4">${slide.title}</h1>
-                            <p class="hero-product-description text-base lg:text-lg text-gray-500 mb-8 max-w-lg mx-auto md:mx-0">${slide.description}</p>
-                            <div class="hero-cta">
-                                <a href="#products" class="inline-block bg-white/30 backdrop-blur-sm border border-white/40 text-gray-600 font-semibold py-3 px-8 rounded-full shadow-md hover:bg-white/50 hover:text-gray-800 hover:-translate-y-1 transition-all duration-300">
+                        <div class="order-2 lg:order-1 text-gray-800 px-4 lg:px-0">
+                            <span class="inline-block bg-white/50 backdrop-blur-sm py-2 px-4 rounded-full text-sm font-semibold text-purple-600 mb-4">${slide.badge}</span>
+                            <h1 class="hero-title font-playfair text-3xl sm:text-4xl lg:text-6xl font-semibold text-gray-700 mb-4 lg:mb-6">${slide.title}</h1>
+                            <p class="hero-description text-base lg:text-lg text-gray-500 mb-6 lg:mb-8 max-w-lg mx-auto lg:mx-0">${slide.description}</p>
+                            <div class="flex flex-col sm:flex-row gap-3 lg:gap-4 justify-center lg:justify-start">
+                                <a href="#products" class="btn-hover-effect bg-white/30 backdrop-blur-sm border border-white/40 text-gray-600 font-semibold py-3 px-6 lg:px-8 rounded-full shadow-md hover:bg-white/50 hover:text-gray-800 transition-all text-sm lg:text-base">
                                     Discover More
                                 </a>
+                                <button onclick="handleShopNow()" class="btn-hover-effect bg-purple-500/80 backdrop-blur-sm text-white font-semibold py-3 px-6 lg:px-8 rounded-full shadow-md hover:bg-purple-600 transition-all text-sm lg:text-base">
+                                    Shop Now
+                                </button>
                             </div>
                         </div>
                     </div>
                 `;
                 sliderContainer.appendChild(slideEl);
 
-                // Create Dot
                 const dotEl = document.createElement('button');
-                dotEl.className = 'nav-dot w-3 h-3 rounded-full transition-all duration-300';
-                dotEl.classList.add(index === 0 ? 'bg-gray-700' : 'bg-gray-700/40', 'hover:bg-gray-700');
+                dotEl.className = 'w-3 h-3 rounded-full transition-all duration-300';
+                dotEl.classList.add(index === 0 ? 'bg-gray-700' : 'bg-gray-700/40');
                 dotEl.dataset.slide = index;
                 sliderDotsContainer.appendChild(dotEl);
             });
 
-            const productsGrid = document.querySelector('.products-grid');
-            productsData.forEach(product => {
-                const cardEl = document.createElement('div');
-                cardEl.className = 'product-card bg-white/60 backdrop-blur-lg border border-white/30 rounded-3xl shadow-lg overflow-hidden transition-all duration-400 hover:shadow-2xl hover:-translate-y-2 group';
-                cardEl.innerHTML = `
-                    <div class="product-image relative h-56 bg-gradient-to-br ${product.color} flex items-center justify-center overflow-hidden">
-                        <i class="fas ${product.icon} text-5xl ${product.iconColor} transition-transform duration-500 group-hover:scale-110"></i>
-                        <div class="product-overlay absolute inset-0 bg-gradient-to-t from-black/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
-                            <button class="add-to-cart bg-white text-purple-600 font-semibold py-3 px-6 rounded-full shadow-md hover:scale-105 transition-transform duration-300 transform translate-y-4 group-hover:translate-y-0">
-                                <i class="fas fa-cart-plus mr-2"></i> Add to Cart
-                            </button>
-                        </div>
-                    </div>
-                    <div class="product-info p-6 text-gray-700">
-                        <h3 class="product-title text-xl font-semibold mb-2">${product.title}</h3>
-                        <p class="product-description text-gray-500 text-sm mb-4 h-10">${product.description}</p>
-                        <div class="flex justify-between items-center">
-                            <div class="product-price text-2xl font-bold">${product.price}</div>
-                            <div class="product-rating flex items-center gap-2 text-sm text-amber-500">
-                                ${generateStars(product.rating)}
-                                <span class="text-gray-500">(${product.reviews})</span>
-                            </div>
-                        </div>
-                    </div>
-                `;
-                productsGrid.appendChild(cardEl);
-            });
+            setupSliderControls();
+        }
 
-            function generateStars(rating) {
-                let stars = '';
-                for (let i = 1; i <= 5; i++) {
-                    if (i <= rating) {
-                        stars += '<i class="fas fa-star"></i>';
-                    } else if (i - 0.5 <= rating) {
-                        stars += '<i class="fas fa-star-half-alt"></i>';
-                    } else {
-                        stars += '<i class="far fa-star"></i>';
-                    }
-                }
-                return stars;
-            }
-
-
-            // --- INTERACTIVITY ---
-
-            // Navbar background on scroll
-            const navbar = document.getElementById('navbar');
-            window.addEventListener('scroll', () => {
-                if (window.scrollY > 50) {
-                    navbar.classList.add('bg-white/40', 'backdrop-blur-lg', 'shadow-sm');
-                } else {
-                    navbar.classList.remove('bg-white/40', 'backdrop-blur-lg', 'shadow-sm');
-                }
-            });
-
-            // Mobile Menu Toggle
-            const mobileMenuButton = document.getElementById('mobile-menu-button');
-            const mobileMenu = document.getElementById('mobile-menu');
-            const openIcon = mobileMenuButton.querySelector('.fa-bars');
-            const closeIcon = mobileMenuButton.querySelector('.fa-times');
-
-            mobileMenuButton.addEventListener('click', () => {
-                mobileMenu.classList.toggle('hidden');
-                openIcon.classList.toggle('hidden');
-                closeIcon.classList.toggle('hidden');
-            });
-
-            // Hero Slider
+        function setupSliderControls() {
             let currentSlide = 0;
             const slides = document.querySelectorAll('.slide');
-            const dots = document.querySelectorAll('.nav-dot');
+            const dots = document.querySelectorAll('.slider-dots button');
             const totalSlides = slides.length;
 
             function showSlide(index) {
                 slides.forEach((slide, i) => {
                     slide.style.opacity = i === index ? '1' : '0';
-                    slide.style.zIndex = i === index ? '10' : '0';
                 });
                 dots.forEach((dot, i) => {
                     dot.classList.toggle('bg-gray-700', i === index);
@@ -333,29 +462,167 @@
                 showSlide((currentSlide - 1 + totalSlides) % totalSlides);
             }
 
-            let slideInterval = setInterval(nextSlide, 7000); // Auto-slide
+            let slideInterval = setInterval(nextSlide, 4000);
 
-            document.getElementById('nextSlide').addEventListener('click', () => {
-                nextSlide();
-                clearInterval(slideInterval);
-                slideInterval = setInterval(nextSlide, 7000);
-            });
-            document.getElementById('prevSlide').addEventListener('click', () => {
-                prevSlide();
-                clearInterval(slideInterval);
-                slideInterval = setInterval(nextSlide, 7000);
-            });
+
+
             dots.forEach(dot => {
                 dot.addEventListener('click', (e) => {
                     showSlide(parseInt(e.target.dataset.slide));
                     clearInterval(slideInterval);
-                    slideInterval = setInterval(nextSlide, 7000);
+                    slideInterval = setInterval(nextSlide, 4000);
                 });
             });
+        }
 
-        });
+        function loadProducts() {
+            const sehatGlow = new SehatGlowData();
+            const products = sehatGlow.getProducts();
+            const productsGrid = document.getElementById('products-grid');
+
+            const fragment = document.createDocumentFragment();
+
+            products.forEach(product => {
+                const cardEl = document.createElement('div');
+                cardEl.className = 'product-card bg-white/60 backdrop-blur-lg border border-white/30 rounded-3xl shadow-lg overflow-hidden group cursor-pointer fade-in';
+
+                cardEl.innerHTML = `
+                    <div class="relative h-64 overflow-hidden">
+                        <img src="${product.image}" alt="${product.name}" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" loading="lazy">
+                        <div class="absolute top-4 right-4 bg-gradient-to-r from-purple-500 to-fuchsia-500 text-white px-3 py-1 rounded-full text-sm font-bold shadow-lg">
+                            ${SehatGlowData.formatPrice(product.price)}
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-semibold mb-2 text-gray-700 group-hover:text-purple-600 transition-colors">${product.name}</h3>
+                        <p class="text-gray-500 text-sm mb-4">${product.description}</p>
+                        <div class="flex justify-between items-center mb-4">
+                            <div class="text-2xl font-bold text-gray-800">${SehatGlowData.formatPrice(product.price)}</div>
+                            <div class="flex items-center gap-2 text-sm">
+                                <span class="text-amber-400">${SehatGlowData.generateStars(product.rating)}</span>
+                                <span class="text-gray-500">(${product.reviews})</span>
+                            </div>
+                        </div>
+                        <div class="flex gap-3">
+                            <button onclick="addToCart(${product.id})" class="flex-1 bg-white border-2 border-purple-500 text-purple-600 font-semibold py-3 px-4 rounded-full shadow-md hover:bg-purple-50 hover:border-purple-600 hover:shadow-lg transition-all duration-300 flex items-center justify-center gap-2">
+                                <i class="fas fa-shopping-cart"></i>
+                                Add to Cart
+                            </button>
+                            <button onclick="buyNow(${product.id})" class="flex-1 bg-gradient-to-r from-purple-500 to-fuchsia-500 text-white font-semibold py-3 px-4 rounded-full shadow-md hover:from-purple-600 hover:to-fuchsia-600 hover:shadow-lg hover:scale-105 transition-all duration-300 flex items-center justify-center gap-2">
+                                <i class="fas fa-bolt"></i>
+                                Buy Now
+                            </button>
+                        </div>
+                    </div>
+                `;
+
+                fragment.appendChild(cardEl);
+            });
+
+            productsGrid.appendChild(fragment);
+        }
+
+        function setupNavigation() {
+            // Navbar scroll effect
+            const navbar = document.getElementById('navbar');
+            window.addEventListener('scroll', () => {
+                if (window.scrollY > 50) {
+                    navbar.classList.add('bg-white/40', 'backdrop-blur-lg', 'shadow-sm');
+                } else {
+                    navbar.classList.remove('bg-white/40', 'backdrop-blur-lg', 'shadow-sm');
+                }
+            });
+
+            // Mobile menu functionality
+            const mobileMenuButton = document.getElementById('mobile-menu-button');
+            const mobileMenu = document.getElementById('mobile-menu');
+            const menuIcon = mobileMenuButton.querySelector('i');
+
+            mobileMenuButton.addEventListener('click', (e) => {
+                e.preventDefault();
+                e.stopPropagation();
+
+                const isHidden = mobileMenu.classList.contains('hidden');
+
+                if (isHidden) {
+                    mobileMenu.classList.remove('hidden');
+                    mobileMenu.classList.add('show');
+                    menuIcon.classList.remove('fa-bars');
+                    menuIcon.classList.add('fa-times');
+                } else {
+                    mobileMenu.classList.add('hidden');
+                    mobileMenu.classList.remove('show');
+                    menuIcon.classList.remove('fa-times');
+                    menuIcon.classList.add('fa-bars');
+                }
+            });
+
+            // Close mobile menu when clicking outside
+            document.addEventListener('click', (e) => {
+                if (!mobileMenu.contains(e.target) && !mobileMenuButton.contains(e.target)) {
+                    mobileMenu.classList.add('hidden');
+                    mobileMenu.classList.remove('show');
+                    menuIcon.classList.remove('fa-times');
+                    menuIcon.classList.add('fa-bars');
+                }
+            });
+
+            // Close mobile menu when clicking on links
+            const mobileLinks = mobileMenu.querySelectorAll('a');
+            mobileLinks.forEach(link => {
+                link.addEventListener('click', () => {
+                    mobileMenu.classList.add('hidden');
+                    mobileMenu.classList.remove('show');
+                    menuIcon.classList.remove('fa-times');
+                    menuIcon.classList.add('fa-bars');
+                });
+            });
+        }
+
+        // Global functions for product interactions
+        function addToCart(productId) {
+            // Check authentication using our local storage system
+            if (!isUserAuthenticated()) {
+                // Store current page for redirect after login
+                localStorage.setItem('sehatglow_redirect_after_login', window.location.href);
+                window.location.href = 'login.html';
+                return;
+            }
+
+            // Use SehatGlowData for cart functionality
+            if (SehatGlowData.addToCart(productId)) {
+                SehatGlowData.showNotification('Product added to cart!');
+            }
+        }
+
+        function buyNow(productId) {
+            // Check authentication using our local storage system
+            if (!isUserAuthenticated()) {
+                // Store current page for redirect after login
+                localStorage.setItem('sehatglow_redirect_after_login', window.location.href);
+                window.location.href = 'login.html';
+                return;
+            }
+
+            if (SehatGlowData.addToCart(productId)) {
+                window.location.href = 'cart.html';
+            }
+        }
+
+        function handleShopNow() {
+            // Check authentication using our local storage system
+            if (!isUserAuthenticated()) {
+                // Store current page for redirect after login
+                localStorage.setItem('sehatglow_redirect_after_login', window.location.href);
+                window.location.href = 'login.html';
+                return;
+            }
+            document.getElementById('products').scrollIntoView({ behavior: 'smooth' });
+        }
+
+
+
     </script>
-
 </body>
 
 </html>
