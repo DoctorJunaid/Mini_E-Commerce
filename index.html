@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SehatGlow • Premium Wellness & Beauty</title>
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600&display=swap" rel="stylesheet">
+
+    <!-- Font Awesome -->
+    <script src="https://kit.fontawesome.com/a81368914c.js" crossorigin="anonymous"></script>
+
+    <!-- Custom Styles for Background and Fonts -->
+    <style>
+        /* Applying custom fonts to Tailwind's utility classes */
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #fdfcff; /* A very light lavender fallback */
+        }
+
+        .font-playfair {
+            font-family: 'Playfair Display', serif;
+        }
+
+        /* --- ASMR Inspired Animated Background --- */
+        .asmr-bg {
+            background: linear-gradient(45deg, #fce7f3, #e9d5ff, #e0f2fe, #d1fae5);
+            background-size: 400% 400%;
+            animation: asmrFlow 25s ease infinite;
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        @keyframes asmrFlow {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        /* Soft aurora overlay effect */
+        .asmr-bg::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background:
+                radial-gradient(circle at 15% 85%, rgba(233, 213, 255, 0.4) 0%, transparent 70%),
+                radial-gradient(circle at 85% 15%, rgba(224, 242, 254, 0.4) 0%, transparent 70%),
+                radial-gradient(circle at 50% 50%, rgba(252, 231, 243, 0.3) 0%, transparent 70%);
+            animation: auroraShift 30s ease-in-out infinite;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        @keyframes auroraShift {
+            0%, 100% { opacity: 0.7; transform: scale(1) rotate(0deg); }
+            25% { opacity: 0.5; transform: scale(1.1) rotate(-30deg); }
+            50% { opacity: 0.8; transform: scale(0.9) rotate(30deg); }
+            75% { opacity: 0.6; transform: scale(1.2) rotate(10deg); }
+        }
+
+        /* Custom transition for hero slider */
+        .slide-transition {
+            transition: opacity 1.5s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+    </style>
+</head>
+
+<body class="asmr-bg">
+
+    <!-- All content wrapper to be above the background animations -->
+    <div class="relative z-10">
+
+        <!-- Navigation Bar -->
+        <nav id="navbar" class="fixed top-0 left-0 right-0 z-50 transition-all duration-300">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="flex items-center justify-between h-20">
+                    <!-- Logo -->
+                    <a href="#" class="flex-shrink-0 flex items-center gap-3 text-gray-700 hover:text-purple-500 transition-colors duration-300">
+                         <div class="w-12 h-12 flex items-center justify-center rounded-xl bg-gradient-to-br from-purple-300 to-fuchsia-300 shadow-lg">
+                            <svg width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M14 3C18.5 3 22 6.5 22 11C22 13.2 21 15.2 19.5 16.5C21 17.8 22 19.8 22 22C22 24.2 20.2 26 18 26H10C7.8 26 6 24.2 6 22C6 19.8 7 17.8 8.5 16.5C7 15.2 6 13.2 6 11C6 6.5 9.5 3 14 3Z" fill="white" fill-opacity="0.9"/>
+                                <circle cx="11.5" cy="9" r="1.2" fill="white" opacity="0.9">
+                                    <animate attributeName="opacity" values="0.9;0.4;0.9" dur="2s" repeatCount="indefinite"/>
+                                </circle>
+                                <circle cx="17.5" cy="18.5" r="0.7" fill="white" opacity="0.6">
+                                    <animate attributeName="opacity" values="0.6;0.2;0.6" dur="2.2s" repeatCount="indefinite"/>
+                                </circle>
+                            </svg>
+                         </div>
+                        <span class="font-playfair text-2xl font-semibold text-gray-600">SehatGlow</span>
+                    </a>
+
+                    <!-- Desktop Menu -->
+                    <div class="hidden md:flex items-center space-x-2">
+                        <a href="#" class="text-gray-500 hover:bg-white/60 hover:text-purple-500 px-4 py-2 rounded-full text-sm font-medium transition-all duration-300">Home</a>
+                        <a href="#products" class="text-gray-500 hover:bg-white/60 hover:text-purple-500 px-4 py-2 rounded-full text-sm font-medium transition-all duration-300">Shop</a>
+                        <a href="#about" class="text-gray-500 hover:bg-white/60 hover:text-purple-500 px-4 py-2 rounded-full text-sm font-medium transition-all duration-300">About</a>
+                        <a href="#contact" class="text-gray-500 hover:bg-white/60 hover:text-purple-500 px-4 py-2 rounded-full text-sm font-medium transition-all duration-300">Contact</a>
+                        <a href="#" class="bg-white/60 text-purple-600 shadow-sm hover:bg-white hover:shadow-md px-5 py-2 rounded-full text-sm font-semibold transition-all duration-300">Login</a>
+                    </div>
+                    
+                    <!-- Mobile Menu Button -->
+                    <div class="md:hidden">
+                        <button id="mobile-menu-button" class="inline-flex items-center justify-center p-2 rounded-md text-gray-500 hover:text-purple-500 hover:bg-white/50 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white">
+                            <span class="sr-only">Open main menu</span>
+                            <i class="fas fa-bars fa-lg block"></i>
+                            <i class="fas fa-times fa-lg hidden"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Mobile Menu, show/hide based on menu state. -->
+            <div id="mobile-menu" class="md:hidden hidden">
+                <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
+                    <a href="#" class="text-gray-500 hover:bg-white/50 block px-3 py-2 rounded-md text-base font-medium">Home</a>
+                    <a href="#products" class="text-gray-500 hover:bg-white/50 block px-3 py-2 rounded-md text-base font-medium">Shop</a>
+                    <a href="#about" class="text-gray-500 hover:bg-white/50 block px-3 py-2 rounded-md text-base font-medium">About</a>
+                    <a href="#contact" class="text-gray-500 hover:bg-white/50 block px-3 py-2 rounded-md text-base font-medium">Contact</a>
+                    <a href="#" class="bg-white/50 text-purple-600 block px-3 py-3 mt-2 rounded-md text-base font-semibold text-center">Login</a>
+                </div>
+            </div>
+        </nav>
+
+        <!-- Hero Product Slider -->
+        <section class="relative h-screen min-h-[700px] w-full flex items-center justify-center overflow-hidden">
+            <div class="slider-container relative w-full h-full">
+                <!-- Slides will be injected here by JS -->
+            </div>
+
+            <!-- Slider Navigation -->
+            <div class="absolute bottom-8 left-1/2 -translate-x-1/2 z-20 flex space-x-4 slider-dots">
+                <!-- Dots will be injected here by JS -->
+            </div>
+
+            <!-- Slider Arrows -->
+            <button id="prevSlide" class="absolute left-4 md:left-8 top-1/2 -translate-y-1/2 z-20 w-12 h-12 rounded-full bg-white/40 backdrop-blur-sm text-gray-600 hover:bg-white/60 transition-all duration-300 flex items-center justify-center">
+                <i class="fas fa-chevron-left"></i>
+            </button>
+            <button id="nextSlide" class="absolute right-4 md:right-8 top-1/2 -translate-y-1/2 z-20 w-12 h-12 rounded-full bg-white/40 backdrop-blur-sm text-gray-600 hover:bg-white/60 transition-all duration-300 flex items-center justify-center">
+                <i class="fas fa-chevron-right"></i>
+            </button>
+        </section>
+
+        <!-- Products Section -->
+        <section id="products" class="py-24 bg-white/20 backdrop-blur-2xl">
+            <div class="container max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center mb-16">
+                    <h2 class="text-4xl md:text-5xl font-playfair font-semibold text-gray-700">Featured Products</h2>
+                    <p class="mt-4 text-lg text-gray-500 max-w-2xl mx-auto">Discover our carefully curated wellness and beauty essentials, crafted with the finest ingredients.</p>
+                </div>
+                
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <!-- Product Cards will be injected here by JS -->
+                </div>
+            </div>
+        </section>
+
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            
+            // --- DATA ---
+            const slidesData = [
+                {
+                    badge: 'Premium Collection',
+                    title: 'Radiance Beauty Cream',
+                    description: 'Luxurious anti-aging cream with natural botanicals and peptides. Deeply nourishes and restores your skin\'s natural glow.',
+                    image: 'https://placehold.co/800x600/fde6f0/4a5568?text=Cream',
+                },
+                {
+                    badge: 'Bestseller',
+                    title: 'Vitamin C Glow Serum',
+                    description: 'Powerful vitamin C serum with hyaluronic acid for brightening and hydration. Clinically proven to reduce dark spots.',
+                    image: 'https://placehold.co/800x600/f3e8ff/4a5568?text=Serum',
+                },
+                {
+                    badge: 'New Arrival',
+                    title: 'SunStone Collection',
+                    description: 'Exclusive wellness collection featuring natural minerals and healing crystals. Enhance your daily routine with nature\'s energy.',
+                    image: 'https://placehold.co/800x600/e0f2fe/4a5568?text=SunStone',
+                }
+            ];
+
+            const productsData = [
+                { title: 'Hydrating Face Mask', description: 'Deep hydration with natural botanicals.', price: '$34.99', rating: 5, reviews: 127, icon: 'fa-spa', color: 'from-pink-100 to-pink-200', iconColor: 'text-pink-400' },
+                { title: 'Wellness Tea Blend', description: 'Organic herbal tea for daily detox.', price: '$24.99', rating: 4.5, reviews: 89, icon: 'fa-seedling', color: 'from-green-100 to-green-200', iconColor: 'text-green-400' },
+                { title: 'Collagen Supplement', description: 'For skin elasticity and joint health.', price: '$49.99', rating: 5, reviews: 203, icon: 'fa-heart', color: 'from-red-100 to-red-200', iconColor: 'text-red-400' },
+                { title: 'Natural Body Oil', description: 'Nourishing oil for smooth, soft skin.', price: '$39.99', rating: 4, reviews: 156, icon: 'fa-leaf', color: 'from-lime-100 to-lime-200', iconColor: 'text-lime-400' },
+                { title: 'Crystal Therapy Set', description: 'Healing crystals for meditation.', price: '$89.99', rating: 4.5, reviews: 94, icon: 'fa-gem', color: 'from-violet-100 to-violet-200', iconColor: 'text-violet-400' },
+                { title: 'Vitamin D Complex', description: 'High-potency for immune support.', price: '$29.99', rating: 5, reviews: 178, icon: 'fa-sun', color: 'from-amber-100 to-amber-200', iconColor: 'text-amber-400' },
+            ];
+
+
+            // --- UI RENDERING ---
+
+            const sliderContainer = document.querySelector('.slider-container');
+            const sliderDotsContainer = document.querySelector('.slider-dots');
+            
+            slidesData.forEach((slide, index) => {
+                // Create Slide
+                const slideEl = document.createElement('div');
+                slideEl.className = 'slide absolute top-0 left-0 w-full h-full slide-transition flex items-center justify-center p-4';
+                slideEl.style.opacity = index === 0 ? '1' : '0';
+                slideEl.innerHTML = `
+                    <div class="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 items-center gap-8 md:gap-16 text-center md:text-left">
+                        <div class="product-showcase order-1 md:order-2">
+                            <img src="${slide.image}" alt="${slide.title}" class="rounded-3xl shadow-2xl w-full max-w-md mx-auto aspect-video md:aspect-square object-cover">
+                        </div>
+                        <div class="product-details order-2 md:order-1 text-gray-800 animate-fade-in">
+                            <span class="inline-block bg-white/50 backdrop-blur-sm py-1 px-4 rounded-full text-sm font-semibold text-purple-600 mb-4">${slide.badge}</span>
+                            <h1 class="hero-product-title font-playfair text-4xl lg:text-6xl font-semibold text-gray-700 mb-4">${slide.title}</h1>
+                            <p class="hero-product-description text-base lg:text-lg text-gray-500 mb-8 max-w-lg mx-auto md:mx-0">${slide.description}</p>
+                            <div class="hero-cta">
+                                <a href="#products" class="inline-block bg-white/30 backdrop-blur-sm border border-white/40 text-gray-600 font-semibold py-3 px-8 rounded-full shadow-md hover:bg-white/50 hover:text-gray-800 hover:-translate-y-1 transition-all duration-300">
+                                    Discover More
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                `;
+                sliderContainer.appendChild(slideEl);
+
+                // Create Dot
+                const dotEl = document.createElement('button');
+                dotEl.className = 'nav-dot w-3 h-3 rounded-full transition-all duration-300';
+                dotEl.classList.add(index === 0 ? 'bg-gray-700' : 'bg-gray-700/40', 'hover:bg-gray-700');
+                dotEl.dataset.slide = index;
+                sliderDotsContainer.appendChild(dotEl);
+            });
+
+            const productsGrid = document.querySelector('.products-grid');
+            productsData.forEach(product => {
+                const cardEl = document.createElement('div');
+                cardEl.className = 'product-card bg-white/60 backdrop-blur-lg border border-white/30 rounded-3xl shadow-lg overflow-hidden transition-all duration-400 hover:shadow-2xl hover:-translate-y-2 group';
+                cardEl.innerHTML = `
+                    <div class="product-image relative h-56 bg-gradient-to-br ${product.color} flex items-center justify-center overflow-hidden">
+                        <i class="fas ${product.icon} text-5xl ${product.iconColor} transition-transform duration-500 group-hover:scale-110"></i>
+                        <div class="product-overlay absolute inset-0 bg-gradient-to-t from-black/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                            <button class="add-to-cart bg-white text-purple-600 font-semibold py-3 px-6 rounded-full shadow-md hover:scale-105 transition-transform duration-300 transform translate-y-4 group-hover:translate-y-0">
+                                <i class="fas fa-cart-plus mr-2"></i> Add to Cart
+                            </button>
+                        </div>
+                    </div>
+                    <div class="product-info p-6 text-gray-700">
+                        <h3 class="product-title text-xl font-semibold mb-2">${product.title}</h3>
+                        <p class="product-description text-gray-500 text-sm mb-4 h-10">${product.description}</p>
+                        <div class="flex justify-between items-center">
+                            <div class="product-price text-2xl font-bold">${product.price}</div>
+                            <div class="product-rating flex items-center gap-2 text-sm text-amber-500">
+                                ${generateStars(product.rating)}
+                                <span class="text-gray-500">(${product.reviews})</span>
+                            </div>
+                        </div>
+                    </div>
+                `;
+                productsGrid.appendChild(cardEl);
+            });
+
+            function generateStars(rating) {
+                let stars = '';
+                for (let i = 1; i <= 5; i++) {
+                    if (i <= rating) {
+                        stars += '<i class="fas fa-star"></i>';
+                    } else if (i - 0.5 <= rating) {
+                        stars += '<i class="fas fa-star-half-alt"></i>';
+                    } else {
+                        stars += '<i class="far fa-star"></i>';
+                    }
+                }
+                return stars;
+            }
+
+
+            // --- INTERACTIVITY ---
+
+            // Navbar background on scroll
+            const navbar = document.getElementById('navbar');
+            window.addEventListener('scroll', () => {
+                if (window.scrollY > 50) {
+                    navbar.classList.add('bg-white/40', 'backdrop-blur-lg', 'shadow-sm');
+                } else {
+                    navbar.classList.remove('bg-white/40', 'backdrop-blur-lg', 'shadow-sm');
+                }
+            });
+
+            // Mobile Menu Toggle
+            const mobileMenuButton = document.getElementById('mobile-menu-button');
+            const mobileMenu = document.getElementById('mobile-menu');
+            const openIcon = mobileMenuButton.querySelector('.fa-bars');
+            const closeIcon = mobileMenuButton.querySelector('.fa-times');
+
+            mobileMenuButton.addEventListener('click', () => {
+                mobileMenu.classList.toggle('hidden');
+                openIcon.classList.toggle('hidden');
+                closeIcon.classList.toggle('hidden');
+            });
+
+            // Hero Slider
+            let currentSlide = 0;
+            const slides = document.querySelectorAll('.slide');
+            const dots = document.querySelectorAll('.nav-dot');
+            const totalSlides = slides.length;
+
+            function showSlide(index) {
+                slides.forEach((slide, i) => {
+                    slide.style.opacity = i === index ? '1' : '0';
+                    slide.style.zIndex = i === index ? '10' : '0';
+                });
+                dots.forEach((dot, i) => {
+                    dot.classList.toggle('bg-gray-700', i === index);
+                    dot.classList.toggle('bg-gray-700/40', i !== index);
+                });
+                currentSlide = index;
+            }
+
+            function nextSlide() {
+                showSlide((currentSlide + 1) % totalSlides);
+            }
+
+            function prevSlide() {
+                showSlide((currentSlide - 1 + totalSlides) % totalSlides);
+            }
+
+            let slideInterval = setInterval(nextSlide, 7000); // Auto-slide
+
+            document.getElementById('nextSlide').addEventListener('click', () => {
+                nextSlide();
+                clearInterval(slideInterval);
+                slideInterval = setInterval(nextSlide, 7000);
+            });
+            document.getElementById('prevSlide').addEventListener('click', () => {
+                prevSlide();
+                clearInterval(slideInterval);
+                slideInterval = setInterval(nextSlide, 7000);
+            });
+            dots.forEach(dot => {
+                dot.addEventListener('click', (e) => {
+                    showSlide(parseInt(e.target.dataset.slide));
+                    clearInterval(slideInterval);
+                    slideInterval = setInterval(nextSlide, 7000);
+                });
+            });
+
+        });
+    </script>
+
+</body>
+
+</html>
